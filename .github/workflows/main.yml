@@ -20,16 +20,23 @@ jobs:
           distribution: temurin
           java-version: '17'
 
+      - name: Find Android Project
+        run: |
+          echo "Searching for Android project..."
+          find . -name "settings.gradle" -o -name "settings.gradle.kts"
+
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: '8.9'
 
       - name: Build APK
-        run: gradle assembleDebug --no-daemon
+        run: |
+          PROJECT_DIR=$(dirname "$(find . -name 'settings.gradle' -o -name 'settings.gradle.kts' | head -n 1)")
+          echo "Project directory: $PROJECT_DIR"
+          cd "$PROJECT_DIR"
+          gradle assembleDebug --no-daemon
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: MAHAMAYA-JEWELLERS-Attendance-APK
-          path: app/build/outputs/apk/debug/app-debug.apk
+          path: "**/app/build/outputs/apk/debug/app-debug.apk"
