@@ -3,7 +3,7 @@
 
     <style name="Theme.MahamayaJewellers" parent="android:style/Theme.Material.Light.NoActionBar">
         <item name="android:fontFamily">sans</item>
-        <item name="android:colorAccent">#9C27B0</item>
+        <item name="android:colorAccent">#9C2780</item>
         <item name="android:navigationBarColor">#000000</item>
         <item name="android:statusBarColor">#000000</item>
     </style>
